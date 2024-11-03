@@ -6,6 +6,7 @@ import { NAV_LINKS } from "@/lib/constants";
 import Link from "next/link";
 import Logo from "../Logo";
 import NavAvatar from "../NavAvatar";
+import MobileNavlinks from "../MobileNavlinks";
 
 export default function Navbar() {
   return (
@@ -13,7 +14,7 @@ export default function Navbar() {
       <Container>
         <Group justify="between" align="center">
           <Logo isText />
-          <Group gap="gap-8" align="center">
+          <Group gap="gap-8" align="center" className="hidden lg:flex">
             {NAV_LINKS.map((link) => (
               <Link key={link.href} href={link.href}>
                 {link.label}
@@ -22,6 +23,7 @@ export default function Navbar() {
             <ContactBadge />
             <NavAvatar />
           </Group>
+          <MobileNavlinks />
         </Group>
       </Container>
     </nav>

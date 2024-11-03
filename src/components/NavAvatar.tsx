@@ -28,10 +28,12 @@ export default function NavAvatar({ className }: props) {
         <DropdownMenuContent>
           {AVATAR_DROPDOWN_OPTIONS.map((i) => (
             <div key={i.group_label}>
-              <DropdownMenuLabel>{i.group_label}</DropdownMenuLabel>
+              <DropdownMenuLabel className="text-xs">
+                {i.group_label}
+              </DropdownMenuLabel>
               <DropdownMenuSeparator />
               {i.items.map((item) => (
-                <DropdownMenuItem key={item.label}>
+                <DropdownMenuItem key={item.label} className="cursor-pointer">
                   {item.label}
                 </DropdownMenuItem>
               ))}

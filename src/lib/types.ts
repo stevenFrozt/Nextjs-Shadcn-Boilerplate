@@ -4,7 +4,7 @@ export type MenuDropdown = {
 };
 
 export type MenuDropdownItems = {
-  link?: string;
+  href?: string;
   label: string;
   onclick?: () => void;
   icon?: React.ReactNode;

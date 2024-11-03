@@ -1,26 +1,27 @@
 export const CONTACT_NUMBER = "+63 930 178 2255";
 
 export const NAV_LINKS = [
-  { link: "/", label: "Home" },
-  { link: "/cars", label: "Cars" },
-  { link: "/about", label: "About Us" },
-  { link: "/contact", label: "Contact Us" },
+  { href: "/", label: "Home" },
+  { href: "/cars", label: "Cars" },
+  { href: "/about", label: "About Us" },
+  { href: "/contact", label: "Contact Us" },
 ];
 
 export const AVATAR_DROPDOWN_OPTIONS = [
   {
     group_label: "Account",
     items: [
-      { link: "", label: "Profile Settings", onclick: () => {} },
-      { link: "", label: "My Bookings", onclick: () => {} },
-      { link: "", label: "Log Out", onclick: () => {} },
+      { href: "", label: "Profile Settings", onclick: () => {} },
+      { href: "", label: "My Bookings", onclick: () => {} },
+      { href: "", label: "Log Out", onclick: () => {} },
     ],
   },
 ];
 
 export const LOGO = {
-  src: "",
-  label: "LOGO",
+  image_src: "",
+  href: "/",
+  text: "Logo",
   alt: "Logo",
   description:
     "Discover the convenience and flexibility of traveling with us, Palawan Best Car Rental, your go-to car rental partner.",

@@ -1,6 +1,5 @@
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import clsx from "clsx";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,13 +9,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { AVATAR_DROPDOWN_OPTIONS } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 
 type props = {
   className?: string;
 };
 export default function NavAvatar({ className }: props) {
   return (
-    <div className={clsx("", className)}>
+    <div className={cn("", className)}>
       <DropdownMenu>
         <DropdownMenuTrigger>
           <Avatar>

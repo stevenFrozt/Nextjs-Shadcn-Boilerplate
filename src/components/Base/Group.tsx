@@ -1,5 +1,5 @@
 import React from "react";
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 
 type Props = {
   className?: string;
@@ -7,7 +7,11 @@ type Props = {
   justify?: "start" | "end" | "center" | "between" | "around" | "evenly";
   align?: "start" | "center" | "end" | "baseline" | "stretch";
   gap?: string; // Define gap size using Tailwind spacing (e.g., "gap-4")
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  sm?: string;
+  md?: string;
+  lg?: string;
+  xl?: string;
 };
 
 export default function Group({
@@ -17,6 +21,10 @@ export default function Group({
   gap = "",
   className,
   children,
+  sm,
+  md,
+  lg,
+  xl,
 }: Props) {
   // Map justify prop values to Tailwind CSS classes
   const justifyClass = (() => {
@@ -56,18 +64,14 @@ export default function Group({
     }
   })();
 
-  return (
-    <div
-      className={clsx(
-        "flex",
-        vertical ? "flex-col" : "flex-row",
-        justifyClass,
-        alignClass,
-        gap, // Add gap class directly
-        className
-      )}
-    >
-      {children}
-    </div>
+  const customClassNames = cn(
+    `flex`,
+    vertical ? "flex-col" : "flex-row",
+    justifyClass,
+    alignClass,
+    gap,
+    className
   );
+
+  return <div className={customClassNames.toString()}>{children}</div>;
 }

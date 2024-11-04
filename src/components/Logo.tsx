@@ -1,5 +1,5 @@
 import { LOGO } from "@/lib/constants";
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -12,7 +12,7 @@ type props = {
 export default function Logo({ isText, bothImageAndLabel, className }: props) {
   return (
     <>
-      <div className={clsx("text-3xl text-primary font-medium", className)}>
+      <div className={cn("text-3xl text-primary font-medium", className)}>
         <Link href={LOGO.href}>
           {isText ? (
             <h1>{LOGO.text}</h1>

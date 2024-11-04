@@ -3,7 +3,7 @@ import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/Providers/ThemeProvider";
 import Layout from "@/components/Layout/Layout";
-
+import NextTopLoader from "nextjs-toploader";
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
   subsets: ["latin"],
@@ -21,8 +21,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={poppins.className}>
+        <NextTopLoader color="#3ea53c" height={4} />
         <ThemeProvider attribute="class" defaultTheme="light">
           <Layout>{children}</Layout>
         </ThemeProvider>

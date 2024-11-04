@@ -1,6 +1,6 @@
-import clsx from "clsx";
 import Group from "./Base/Group";
 import { CONTACT_NUMBER } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 
 type props = {
   className?: string;
@@ -9,13 +9,13 @@ type props = {
 export default function ContactBadge({ className, IconClassName }: props) {
   return (
     <div
-      className={clsx(
+      className={cn(
         "bg-primary py-3 px-4 text-white rounded-md text-sm",
         className
       )}
     >
       <Group gap={"gap-4"}>
-        {/* <IoIosCall className={clsx("text-xl", IconClassName)} /> */}
+        {/* <IoIosCall className={cn("text-xl", IconClassName)} /> */}
         {CONTACT_NUMBER}
       </Group>
     </div>

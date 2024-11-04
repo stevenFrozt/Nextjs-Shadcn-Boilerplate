@@ -1,3 +1,5 @@
+import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa6";
+
 export const CONTACT_NUMBER = "+63 930 178 2255";
 
 export const NAV_LINKS = [
@@ -31,10 +33,10 @@ export const SITE_DETAILS = {
   address: {
     present: "",
     street: "",
-    city: "",
+    city: "Puerto Princesa",
     state: "",
-    zip_code: "",
-    country: "",
+    zip_code: "5300",
+    country: "Philippines",
     full_address: "17 H. Mendoza Puerto Princesa City",
     map_link: "",
     latitude: "",
@@ -43,9 +45,9 @@ export const SITE_DETAILS = {
   email_address: "sample@gmail.com",
   contact_number: CONTACT_NUMBER,
   socials_Links: [
-    { src: "", icon: "", label: "Facebook" },
-    { src: "", icon: "", label: "Instagram" },
-    { src: "", icon: "", label: "Twitter" },
+    { src: "", icon: <FaFacebook />, label: "Facebook" },
+    { src: "", icon: <FaInstagram />, label: "Instagram" },
+    { src: "", icon: <FaTwitter />, label: "Twitter" },
   ],
   year: "2024",
   business_hours: {

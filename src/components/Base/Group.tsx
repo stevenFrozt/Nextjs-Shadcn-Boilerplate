@@ -8,10 +8,7 @@ type Props = {
   align?: "start" | "center" | "end" | "baseline" | "stretch";
   gap?: string; // Define gap size using Tailwind spacing (e.g., "gap-4")
   children?: React.ReactNode;
-  sm?: string;
-  md?: string;
-  lg?: string;
-  xl?: string;
+  wrap?: boolean;
 };
 
 export default function Group({
@@ -21,10 +18,7 @@ export default function Group({
   gap = "",
   className,
   children,
-  sm,
-  md,
-  lg,
-  xl,
+  wrap,
 }: Props) {
   // Map justify prop values to Tailwind CSS classes
   const justifyClass = (() => {
@@ -70,6 +64,7 @@ export default function Group({
     justifyClass,
     alignClass,
     gap,
+    wrap ? "flex-wrap" : "flex-nowrap",
     className
   );
 

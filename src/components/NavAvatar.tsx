@@ -17,7 +17,7 @@ type props = {
 export default function NavAvatar({ className }: props) {
   return (
     <div className={cn("", className)}>
-      <DropdownMenu>
+      <DropdownMenu modal={false}>
         <DropdownMenuTrigger>
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" />

@@ -1,6 +1,7 @@
 import Group from "./Base/Group";
 import { CONTACT_NUMBER } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { FaPhone } from "react-icons/fa6";
 
 type props = {
   className?: string;
@@ -14,8 +15,8 @@ export default function ContactBadge({ className, IconClassName }: props) {
         className
       )}
     >
-      <Group gap={"gap-4"}>
-        {/* <IoIosCall className={cn("text-xl", IconClassName)} /> */}
+      <Group align="center" gap={"gap-2"}>
+        <FaPhone />
         {CONTACT_NUMBER}
       </Group>
     </div>

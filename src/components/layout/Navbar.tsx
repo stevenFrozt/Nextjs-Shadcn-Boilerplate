@@ -19,21 +19,23 @@ export default function Navbar() {
       <Container>
         <Group justify="between" align="center">
           <Logo isText />
-          <Group gap="gap-8" align="center" className="hidden lg:flex">
+          <Group gap="gap-6" align="center" className="hidden lg:flex">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "transition duration-200 hover:-translate-y-1",
-                  path === link.href ? "text-primary font-medium" : ""
+                  "transition duration-200 hover:-translate-y-1 px-4 py-2",
+                  path === link.href
+                    ? "text-primary font-[600]"
+                    : "text-slate-500"
                 )}
               >
                 {link.label}
               </Link>
             ))}
             <ContactBadge />
-            <NavAvatar />
+            <NavAvatar className="pt-1" />
           </Group>
           <MobileNavlinks />
         </Group>

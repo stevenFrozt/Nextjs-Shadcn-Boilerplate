@@ -9,9 +9,9 @@ export default function Footer() {
   return (
     <div className="bg-primary text-white">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-20 py-8 ">
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-20 lg:gap-8 py-8 ">
           {/* LOGO COLUMN */}
-          <Group>
+          <Group className=" lg:col-span-2 text-center lg:text-left">
             <div>
               <Logo className="text-white" isText />
               <p className="pt-4">{LOGO.description}</p>
@@ -55,10 +55,22 @@ export default function Footer() {
           </ColumnFooter>
 
           {/* LOCATION IFRAME */}
-          <ColumnFooter title="Location"></ColumnFooter>
+          <ColumnFooter title="Location" className="lg:col-span-2">
+            <iframe
+              width="100%"
+              className="w-full h-64 rounded-md"
+              // frameBorder="0"
+              // scrolling="no"
+              // marginHeight="0"
+              // marginWidth="0"
+              src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street,%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+            ></iframe>
+          </ColumnFooter>
         </div>
         {/* COPY RIGHT */}
-        <div></div>
+        <div className="text-center py-4 mt-2 text-sm">
+          {SITE_DETAILS.copyright}
+        </div>
       </Container>
     </div>
   );
@@ -67,11 +79,14 @@ export default function Footer() {
 type ColumnFooterProps = {
   children?: React.ReactNode;
   title?: string;
+  className?: string;
 };
-function ColumnFooter({ children, title }: ColumnFooterProps) {
+function ColumnFooter({ children, title, className }: ColumnFooterProps) {
   return (
-    <div>
-      <h5 className="text-xl font-medium pb-4">{title}</h5>
+    <div className={className}>
+      <h5 className="text-xl font-medium pb-4 text-center lg:text-left">
+        {title}
+      </h5>
       <div>{children}</div>
     </div>
   );

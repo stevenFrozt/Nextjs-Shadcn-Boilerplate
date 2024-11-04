@@ -52,4 +52,5 @@ export const SITE_DETAILS = {
     start: "8:00 AM",
     end: "10:00 PM",
   },
+  copyright: `Copyright © 2024 ${LOGO.text}.`,
 };

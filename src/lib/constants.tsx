@@ -1,4 +1,7 @@
+import { signOut } from "next-auth/react";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa6";
+
+export const LAYOUT_EXCEPTION = ["/login"]; // exclude from layout
 
 export const CONTACT_NUMBER = "+63 930 178 2255";
 
@@ -7,6 +10,7 @@ export const NAV_LINKS = [
   { href: "/cars", label: "Cars" },
   { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact Us" },
+  { href: "/test", label: "test" },
 ];
 
 export const AVATAR_DROPDOWN_OPTIONS = [
@@ -15,7 +19,7 @@ export const AVATAR_DROPDOWN_OPTIONS = [
     items: [
       { href: "", label: "Profile Settings", onclick: () => {} },
       { href: "", label: "My Bookings", onclick: () => {} },
-      { href: "", label: "Log Out", onclick: () => {} },
+      { href: "", label: "Log Out", onclick: () => signOut() },
     ],
   },
 ];

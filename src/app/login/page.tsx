@@ -1,33 +1,28 @@
 "use client";
-import Container from "@/components/Base/Container";
 import Group from "@/components/Base/Group";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
-import { useFormik } from "formik";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css/bundle";
-// import "swiper/css/pagination";
 import { signIn } from "next-auth/react";
-import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import Logo from "@/components/Logo";
-import { Checkbox } from "@/components/ui/checkbox";
+import LoginForm from "@/components/forms/loginForm";
 
-export default function page() {
+export default function Page() {
   return (
     <main className="min-h-screen w-full grid place-items-center lg:pt-4 bg-[#E3E3E3]">
       <div className="lg:shadow-xl lg:drop-shadow-lg w-full h-full lg:w-[80%] lg:h-[85%] rounded-lg  border bg-white  overflow-hidden">
         <Group className="h-full">
           {/* FORM */}
-          <div className="h-full w-full lg:w-1/2 px-1 lg:px-8 py-12 grid place-item">
+          <div className="h-full w-full lg:w-1/2 px-1 lg:px-8 py-8 grid place-item">
             <div>
               <Logo isText className="text-center text-4xl" />
-              <div className=" pt-8 pb-4 w-4/5 mx-auto">
+              <div className=" pt-8 py-4 w-4/5 mx-auto">
                 <h4 className=" font-semibold text-2xl pb-2">Sign In</h4>
                 <p className="text-slate-400 text-sm">
                   Don't have an account?{" "}
@@ -113,102 +108,5 @@ export default function page() {
         </Group>
       </div>
     </main>
-  );
-}
-
-function LoginForm() {
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
-
-  return (
-    <>
-      <div className="w-4/5   mx-auto">
-        <form onSubmit={formik.handleSubmit} className="w-full ">
-          <Group
-            vertical
-            className="w-full"
-            align="center"
-            justify="center"
-            gap="gap-4"
-          >
-            <TextField
-              label="Email"
-              name="email"
-              placeholder="Enter Email"
-              onChange={formik.handleChange}
-              value={formik.values.email}
-              className="w-full"
-            />
-            <TextField
-              label="Password"
-              name="password"
-              placeholder="Enter Password"
-              onChange={formik.handleChange}
-              value={formik.values.password}
-              className="w-full"
-            />
-            <Group
-              className="text-sm w-full py-2"
-              align="center"
-              justify="between"
-            >
-              <Group align="center" gap="gap-2">
-                <Checkbox id="remember" className="h-4 w-4" />
-                <label htmlFor="remember" className="py-1 cursor-pointer">
-                  Remember me
-                </label>
-              </Group>
-              <Link href={""}>Forgot password</Link>
-            </Group>
-            <Button className="w-full py-6 mt-4">Sign In</Button>
-          </Group>
-        </form>
-      </div>
-    </>
-  );
-}
-
-type props = {
-  className?: string;
-  onChange: any;
-  value: any;
-  name: string;
-  label?: string;
-  placeholder?: string;
-  helper?: string;
-  type?: "text" | "password" | "number" | "email";
-};
-function TextField({
-  className,
-  onChange,
-  value,
-  name,
-  label,
-  placeholder,
-  type,
-}: props) {
-  return (
-    <div className={cn("w-full", className)}>
-      <label htmlFor={name} className="text-slate-500 text-sm ">
-        {label}
-      </label>
-      <Input
-        id={name}
-        name={name}
-        type={type}
-        onChange={onChange}
-        value={value}
-        placeholder={placeholder}
-        className="mt-1 h-11"
-      />
-      {/* <p className="py-2 text-sm text-red-500">Validation Error</p> */}
-    </div>
   );
 }

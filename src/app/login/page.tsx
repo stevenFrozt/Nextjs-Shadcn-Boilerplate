@@ -16,7 +16,7 @@ import LoginForm from "@/components/forms/loginForm";
 export default function Page() {
   return (
     <main className="min-h-screen w-full grid place-items-center lg:pt-4 bg-[#E3E3E3]">
-      <div className="lg:shadow-xl lg:drop-shadow-lg w-full h-full lg:w-[80%] lg:h-[85%] rounded-lg  border bg-white  overflow-hidden">
+      <div className="lg:shadow-xl lg:drop-shadow-lg w-full h-full lg:w-[75%] lg:h-[85%] rounded-lg  border bg-white  overflow-hidden">
         <Group className="h-full">
           {/* FORM */}
           <div className="h-full w-full lg:w-1/2 px-1 lg:px-8 py-8 grid place-item">
@@ -27,7 +27,7 @@ export default function Page() {
                 <p className="text-slate-400 text-sm">
                   Don't have an account?{" "}
                   <span className="text-primary underline">
-                    <Link href={"/"}>Create now</Link>
+                    <Link href={"/"}>Create Now.</Link>
                   </span>
                 </p>
               </div>

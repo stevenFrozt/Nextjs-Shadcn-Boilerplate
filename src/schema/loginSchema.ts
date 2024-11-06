@@ -1,6 +1,8 @@
 import { object, string } from "yup";
 
 export const loginSchema = object({
-  email: string().required("email is required"),
-  password: string().required("password is required"),
+  email: string()
+    .required("Email Field is required")
+    .email("Please enter a valid email address ex.(example@domain.com)"),
+  password: string().required("Password Field is required"),
 });

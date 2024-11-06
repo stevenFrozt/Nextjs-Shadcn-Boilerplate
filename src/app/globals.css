@@ -11,6 +11,7 @@
 }
 
 */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -19,6 +20,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --screenHNav: calc(100svh - 4.5rem);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,7 +32,7 @@
 }
 
 @layer utilities {
-  .text-balance {
+  n .text-balance {
     text-wrap: balance;
   }
 }
@@ -118,5 +120,11 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .min-h-screen-nav {
+    height: var(--screenHNav);
   }
 }

@@ -1,7 +1,21 @@
 import { signOut } from "next-auth/react";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa6";
 
-export const LAYOUT_EXCEPTION = ["/login"]; // exclude from layout
+export const LAYOUT_CUSTOM = [
+  {
+    path: "/login",
+    isCustom: true,
+    isCustomMain: false,
+    nav: {
+      isEnabled: false,
+      showLinks: false,
+      showContactBadge: false,
+      showAvatar: false,
+      showBorderBottom: false,
+    },
+    footer: false,
+  },
+];
 
 export const CONTACT_NUMBER = "+63 930 178 2255";
 

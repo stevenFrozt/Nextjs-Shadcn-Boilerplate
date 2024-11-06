@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/Providers/ThemeProvider";
 import Layout from "@/components/Layout/Layout";
 import NextTopLoader from "nextjs-toploader";
 import SessionProviderWrapper from "@/Providers/SessionProvider";
+import { Suspense } from "react";
+import Loading from "./loading";
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
   subsets: ["latin"],
@@ -27,7 +29,9 @@ export default function RootLayout({
         <body className={poppins.className}>
           <NextTopLoader color="#3ea53c" height={4} />
           <ThemeProvider attribute="class" defaultTheme="light">
-            <Layout>{children}</Layout>
+            <Suspense fallback={<Loading />}>
+              <Layout>{children}</Layout>
+            </Suspense>
           </ThemeProvider>
         </body>
       </html>

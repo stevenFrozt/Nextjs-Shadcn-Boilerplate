@@ -39,7 +39,6 @@ export async function middleware(request: NextRequest) {
 
   //   ADMIN MIDDLEWARE
   const protectedAdminPath = ["/admin"];
-  // console.log(token)
   if (isPathMatch(protectedAdminPath)) {
     if (!token) {
       const url = new URL(loginPage, request.url);

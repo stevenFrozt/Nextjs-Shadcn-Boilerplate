@@ -7,6 +7,7 @@ import NextTopLoader from "nextjs-toploader";
 import SessionProviderWrapper from "@/Providers/SessionProvider";
 import { Suspense } from "react";
 import Loading from "./loading";
+import AuthProvider from "@/Providers/AuthProvider";
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
   subsets: ["latin"],
@@ -25,16 +26,18 @@ export default function RootLayout({
 }>) {
   return (
     <SessionProviderWrapper>
-      <html lang="en" suppressHydrationWarning>
-        <body className={poppins.className}>
-          <NextTopLoader color="#3ea53c" height={4} />
-          <ThemeProvider attribute="class" defaultTheme="light">
-            <Suspense fallback={<Loading />}>
-              <Layout>{children}</Layout>
-            </Suspense>
-          </ThemeProvider>
-        </body>
-      </html>
+      <AuthProvider>
+        <html lang="en" suppressHydrationWarning>
+          <body className={poppins.className}>
+            <NextTopLoader color="#3ea53c" height={4} />
+            <ThemeProvider attribute="class" defaultTheme="light">
+              <Suspense fallback={<Loading />}>
+                <Layout>{children}</Layout>
+              </Suspense>
+            </ThemeProvider>
+          </body>
+        </html>
+      </AuthProvider>
     </SessionProviderWrapper>
   );
 }

@@ -15,7 +15,6 @@ export default function LoginForm() {
     validationSchema: loginSchema,
     onSubmit: (values) => {
       //   alert(JSON.stringify(values, null, 2));
-      console.log(values);
     },
   });
 

@@ -9,4 +9,5 @@ export const authOptions: NextAuthOptions = {
       clientSecret: GOOGLE_SECRET,
     }),
   ],
+  pages: { signIn: "/login" },
 };

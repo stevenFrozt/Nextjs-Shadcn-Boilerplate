@@ -21,7 +21,6 @@ export default function TextField({
   type,
   helper,
 }: props) {
-  console.log(helper);
   return (
     <div className={cn("w-full", className)}>
       <label htmlFor={name} className="text-slate-500 text-sm ">

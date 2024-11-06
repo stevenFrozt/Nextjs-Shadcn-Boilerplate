@@ -26,7 +26,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/api/auth/[...nextauth]/route.backup"
+    "src/app/api/auth/[...nextauth]/route.backup",
+    "middleware.backup"
   ],
   "exclude": ["node_modules"]
 }

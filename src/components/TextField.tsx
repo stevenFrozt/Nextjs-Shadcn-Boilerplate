@@ -10,6 +10,7 @@ type props = {
   placeholder?: string;
   helper?: string | boolean;
   type?: "text" | "password" | "number" | "email";
+  touched?: boolean;
 };
 export default function TextField({
   className,
@@ -20,8 +21,8 @@ export default function TextField({
   placeholder,
   type,
   helper,
+  touched = true,
 }: props) {
-  console.log(helper);
   return (
     <div className={cn("w-full", className)}>
       <label htmlFor={name} className="text-slate-500 text-sm ">
@@ -36,11 +37,14 @@ export default function TextField({
         placeholder={placeholder}
         className={cn(
           "mt-1 h-11   ",
-          helper ? "border-2 border-red-500 text-red-500" : ""
+          helper && touched ? "border-2 border-red-500 text-red-500" : ""
         )}
       />
       <p
-        className={cn("py-2 text-xs text-red-500", helper ? "block" : "hidden")}
+        className={cn(
+          "py-2 text-xs text-red-500",
+          helper && touched ? "block" : "hidden"
+        )}
       >
         {helper}
       </p>

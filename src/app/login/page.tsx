@@ -31,7 +31,7 @@ export default function Page() {
                 <p className="text-slate-400 text-sm">
                   Don't have an account?{" "}
                   <span className="text-primary underline">
-                    <Link href={"/"}>Create Now.</Link>
+                    <Link href={"/register"}>Create Now.</Link>
                   </span>
                 </p>
               </div>

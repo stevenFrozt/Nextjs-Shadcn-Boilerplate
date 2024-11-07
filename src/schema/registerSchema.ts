@@ -1,6 +1,25 @@
 import * as Yup from "yup";
 
-const validationSchema = Yup.object().shape({
+export const registerInitialValues = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+  birthdate: "",
+  contactNumber: "",
+  gender: "",
+  // address: {
+  //   street: "",
+  //   city: "",
+  //   state: "",
+  //   country: "",
+  //   postalCode: "",
+  // },
+  terms: false, // Defaults to false because it's a checkbox
+};
+
+export const registerValidationSchema = Yup.object().shape({
   firstName: Yup.string()
     .required("First name is required")
     .matches(/^[A-Za-z]+$/, "First name can only contain letters"),
@@ -9,10 +28,10 @@ const validationSchema = Yup.object().shape({
     .required("Last name is required")
     .matches(/^[A-Za-z]+$/, "Last name can only contain letters"),
 
-  username: Yup.string()
-    .required("Username is required")
-    .min(3, "Username must be at least 3 characters")
-    .max(20, "Username cannot exceed 20 characters"),
+  // username: Yup.string()
+  //   .required("Username is required")
+  //   .min(3, "Username must be at least 3 characters")
+  //   .max(20, "Username cannot exceed 20 characters"),
 
   email: Yup.string()
     .email("Please enter a valid email address, such as example@domain.com")
@@ -45,20 +64,18 @@ const validationSchema = Yup.object().shape({
     .oneOf(["Male", "Female", "Other"], "Invalid gender option")
     .required("Gender is required"),
 
-  address: Yup.object().shape({
-    street: Yup.string().required("Street address is required"),
-    city: Yup.string().required("City is required"),
-    state: Yup.string().required("State is required"),
-    country: Yup.string().required("Country is required"),
-    postalCode: Yup.string()
-      .required("Postal code is required")
-      .matches(/^[0-9]{5}$/, "Postal code must be exactly 5 digits"),
-  }),
+  // address: Yup.object().shape({
+  //   street: Yup.string().required("Street address is required"),
+  //   city: Yup.string().required("City is required"),
+  //   state: Yup.string().required("State is required"),
+  //   country: Yup.string().required("Country is required"),
+  //   postalCode: Yup.string()
+  //     .required("Postal code is required")
+  //     .matches(/^[0-9]{5}$/, "Postal code must be exactly 5 digits"),
+  // }),
 
   terms: Yup.boolean().oneOf(
     [true],
     "You must accept the terms and conditions"
   ),
 });
-
-export default validationSchema;

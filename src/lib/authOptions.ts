@@ -23,7 +23,6 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
-        console.log(credentials);
         const dummyDatabase = [
           {
             id: "1",

@@ -5,7 +5,7 @@ import { Checkbox } from "../ui/checkbox";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import TextField from "../TextField";
-import { loginSchema } from "@/schema/loginSchema";
+import { loginInitialValues, loginSchema } from "@/schema/loginSchema";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -17,25 +17,21 @@ export default function LoginForm() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
+    initialValues: loginInitialValues,
     validationSchema: loginSchema,
-    onSubmit: async (values) => {
-      const response = await signIn("credentials", {
-        email: values.email,
-        password: values.password,
-        redirect: false,
-      });
-      if (response?.error) {
-        const message = JSON.parse(response?.error || "");
-        setErrorMessage(message?.errors || "");
-        return;
-      }
-      router.push(callbackUrl ? callbackUrl : "/");
-    },
+    onSubmit: SubmitHandler,
   });
+
+  async function SubmitHandler(values: any) {
+    const response = await signIn("credentials", {
+      email: values.email,
+      password: values.password,
+      redirect: false,
+    });
+    response?.error
+      ? setErrorMessage(JSON.parse(response.error).errors || "")
+      : router.push(callbackUrl || "/");
+  }
 
   return (
     <>
@@ -59,6 +55,7 @@ export default function LoginForm() {
               }}
               value={formik.values.email}
               helper={formik.errors.email || Boolean(errorMessage)}
+              touched={formik.touched.email}
               className="w-full"
             />
             <TextField

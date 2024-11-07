@@ -1,5 +1,10 @@
 import { object, string } from "yup";
 
+export const loginInitialValues = {
+  email: "",
+  password: "",
+};
+
 export const loginSchema = object({
   email: string()
     .required("Email Field is required")

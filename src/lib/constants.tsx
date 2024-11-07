@@ -1,5 +1,9 @@
+import { config } from "@/middleware";
 import { signOut } from "next-auth/react";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa6";
+
+// Add routes in the middleware.ts
+export const PROTECTED_ROUTES = [...config.matcher];
 
 export const LAYOUT_CUSTOM = [
   {
@@ -15,6 +19,10 @@ export const LAYOUT_CUSTOM = [
     },
     footer: false,
   },
+  {
+    path: "/register",
+    isCustom: true,
+  },
 ];
 
 export const CONTACT_NUMBER = "+63 930 178 2255";
@@ -24,7 +32,6 @@ export const NAV_LINKS = [
   { href: "/cars", label: "Cars" },
   { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact Us" },
-  { href: "/test", label: "test" },
 ];
 
 export const AVATAR_DROPDOWN_OPTIONS = [

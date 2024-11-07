@@ -12,8 +12,12 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import LoginForm from "@/components/forms/loginForm";
+import { useSearchParams } from "next/navigation";
 
 export default function Page() {
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
+
   return (
     <main className="min-h-screen w-full grid place-items-center lg:pt-4 bg-[#E3E3E3]">
       <div className="lg:shadow-xl lg:drop-shadow-lg w-full h-full lg:w-[75%] lg:h-[85%] rounded-lg  border bg-white  overflow-hidden">
@@ -42,7 +46,9 @@ export default function Page() {
                 </Group>
                 <Button
                   className="w-4/5 py-5  bg-white text-black hover:text-primary border hover:bg-white text-sm  "
-                  onClick={() => signIn("google")}
+                  onClick={() =>
+                    signIn("google", { callbackUrl: callbackUrl || "" })
+                  }
                 >
                   <div>
                     <FcGoogle className=" text-5xl" />

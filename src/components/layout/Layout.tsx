@@ -26,14 +26,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const layout = LAYOUT_CUSTOM?.find((i) => i.path === pathname);
 
   if (layout) {
-    flags.isCustom = layout?.isCustom;
-    flags.isCustomMain = layout?.isCustomMain;
-    flags.nav.isEnabled = layout?.nav?.isEnabled;
-    flags.nav.showLinks = layout?.nav?.showLinks;
-    flags.nav.showContactBadge = layout?.nav?.showContactBadge;
-    flags.nav.showAvatar = layout?.nav?.showAvatar;
-    flags.nav.showBorderBottom = layout?.nav?.showBorderBottom;
-    flags.footer = layout?.footer;
+    flags.isCustom = layout?.isCustom || false;
+    flags.isCustomMain = layout?.isCustomMain || false;
+    flags.nav.isEnabled = layout?.nav?.isEnabled || true;
+    flags.nav.showLinks = layout?.nav?.showLinks || true;
+    flags.nav.showContactBadge = layout?.nav?.showContactBadge || true;
+    flags.nav.showAvatar = layout?.nav?.showAvatar || true;
+    flags.nav.showBorderBottom = layout?.nav?.showBorderBottom || true;
+    flags.footer = layout?.footer || true;
   }
 
   if (flags.isCustom) {

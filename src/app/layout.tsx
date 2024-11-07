@@ -25,19 +25,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <SessionProviderWrapper>
-      <AuthProvider>
-        <html lang="en" suppressHydrationWarning>
-          <body className={poppins.className}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={poppins.className}>
+        <SessionProviderWrapper>
+          <AuthProvider>
             <NextTopLoader color="#3ea53c" height={4} />
             <ThemeProvider attribute="class" defaultTheme="light">
               <Suspense fallback={<Loading />}>
                 <Layout>{children}</Layout>
               </Suspense>
             </ThemeProvider>
-          </body>
-        </html>
-      </AuthProvider>
-    </SessionProviderWrapper>
+          </AuthProvider>
+        </SessionProviderWrapper>
+      </body>
+    </html>
   );
 }

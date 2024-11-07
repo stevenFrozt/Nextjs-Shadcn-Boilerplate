@@ -1,9 +1,10 @@
 import React from "react";
+import { FaSpinner } from "react-icons/fa6";
 
 export default function Loading() {
   return (
-    <div className="grid place-items-center w-full h-full absolute top-1/2 left-1/2 -traslate-y-1/2 -translate-x-1/2 ">
-      Loading...
+    <div className="bg-white grid place-items-center w-screen h-screen  fixed left-0 top-0 ">
+      <FaSpinner className="text-3xl animate-spin text-primary" />
     </div>
   );
 }

@@ -1,11 +1,10 @@
-import { authOptions } from "@/lib/authOptions";
-import { getServerSession } from "next-auth";
+"use client";
+
+import { PROTECTED_ROUTES } from "@/lib/constants";
 import React from "react";
 
 type props = { children: React.ReactNode };
 
-export default async function AuthProvider({ children }: props) {
-  const session = await getServerSession(authOptions);
-
+export default function AuthProvider({ children }: props) {
   return <>{children}</>;
 }

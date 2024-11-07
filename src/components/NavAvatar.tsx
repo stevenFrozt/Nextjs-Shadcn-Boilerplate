@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import { useSession } from "next-auth/react";
 import { Skeleton } from "./ui/skeleton";
 import Link from "next/link";
+import { getAvatarInitials } from "@/helpers/getAvatarInitials";
 
 type props = {
   className?: string;
@@ -36,7 +37,9 @@ export default function NavAvatar({ className }: props) {
             <AvatarImage
               src={session?.user?.image || "https://github.com/shadcn.png"}
             />
-            <AvatarFallback>{session?.user?.name || "U"}</AvatarFallback>
+            <AvatarFallback className="bg-primary/20 text-primary">
+              {getAvatarInitials(session?.user?.name || "U")}
+            </AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
 

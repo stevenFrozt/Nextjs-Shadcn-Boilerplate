@@ -8,7 +8,7 @@ type props = {
   name: string;
   label?: string;
   placeholder?: string;
-  helper?: string;
+  helper?: string | boolean;
   type?: "text" | "password" | "number" | "email";
 };
 export default function TextField({
@@ -21,6 +21,7 @@ export default function TextField({
   type,
   helper,
 }: props) {
+  console.log(helper);
   return (
     <div className={cn("w-full", className)}>
       <label htmlFor={name} className="text-slate-500 text-sm ">
@@ -33,7 +34,10 @@ export default function TextField({
         onChange={onChange}
         value={value}
         placeholder={placeholder}
-        className="mt-1 h-11"
+        className={cn(
+          "mt-1 h-11   ",
+          helper ? "border-2 border-red-500 text-red-500" : ""
+        )}
       />
       <p
         className={cn("py-2 text-xs text-red-500", helper ? "block" : "hidden")}

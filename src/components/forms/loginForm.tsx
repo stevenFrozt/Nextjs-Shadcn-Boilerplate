@@ -1,3 +1,4 @@
+"use client";
 import { useFormik } from "formik";
 import Group from "../Base/Group";
 import { Checkbox } from "../ui/checkbox";
@@ -5,16 +6,34 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import TextField from "../TextField";
 import { loginSchema } from "@/schema/loginSchema";
+import { signIn } from "next-auth/react";
+import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function LoginForm() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
+  const [errorMessage, setErrorMessage] = useState("");
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     validationSchema: loginSchema,
-    onSubmit: (values) => {
-      //   alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      const response = await signIn("credentials", {
+        email: values.email,
+        password: values.password,
+        redirect: false,
+      });
+      if (response?.error) {
+        const message = JSON.parse(response?.error || "");
+        setErrorMessage(message?.errors || "");
+        return;
+      }
+      router.push(callbackUrl ? callbackUrl : "/");
     },
   });
 
@@ -33,18 +52,26 @@ export default function LoginForm() {
               label="Email"
               name="email"
               placeholder="Enter Email"
-              onChange={formik.handleChange}
+              onChange={(e: any) => {
+                formik.handleChange(e);
+                formik.setFieldTouched("email", false, false);
+                setErrorMessage("");
+              }}
               value={formik.values.email}
-              helper={formik.errors.email}
+              helper={formik.errors.email || Boolean(errorMessage)}
               className="w-full"
             />
             <TextField
               label="Password"
               name="password"
               placeholder="Enter Password"
-              onChange={formik.handleChange}
+              onChange={(e: any) => {
+                formik.handleChange(e);
+                formik.setFieldTouched("password", false, false);
+                setErrorMessage("");
+              }}
               value={formik.values.password}
-              helper={formik.errors.password}
+              helper={formik.errors.password || errorMessage}
               className="w-full"
             />
             <Group

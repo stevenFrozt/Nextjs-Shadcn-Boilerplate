@@ -28,12 +28,12 @@ export const LAYOUT_CUSTOM = [
 ];
 
 export const CONTACT_NUMBER = "+63 930 178 2255";
-
+export const LOGIN_COOKIE_KEY = "boilerplate-app-login";
 export const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/cars", label: "Cars" },
-  { href: "/about", label: "About Us" },
-  { href: "/contact", label: "Contact Us" },
+  { href: "/", label: "Home", onClick: () => {} },
+  { href: "/cars", label: "Cars", onClick: () => {} },
+  { href: "/about", label: "About Us", onClick: () => {} },
+  { href: "/contact", label: "Contact Us", onClick: () => {} },
 ];
 
 export const AVATAR_DROPDOWN_OPTIONS = [

@@ -1,18 +1,18 @@
 "use client";
 import Group from "@/components/Base/Group";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import Image from "next/image";
-import React from "react";
-import { FcGoogle } from "react-icons/fc";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
-import "swiper/css/bundle";
-import { signIn } from "next-auth/react";
-import Link from "next/link";
 import Logo from "@/components/Logo";
 import LoginForm from "@/components/forms/loginForm";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { signIn } from "next-auth/react";
+import Image from "next/image";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import React from "react";
+import { FcGoogle } from "react-icons/fc";
+import "swiper/css/bundle";
+import { Autoplay, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function Page() {
   const searchParams = useSearchParams();

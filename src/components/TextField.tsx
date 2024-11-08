@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Input } from "./ui/input";
+import { Skeleton } from "./ui/skeleton";
 
 type props = {
   className?: string;
@@ -12,6 +13,7 @@ type props = {
   type?: "text" | "password" | "number" | "email";
   touched?: boolean;
   required?: boolean | "none";
+  loading?: boolean;
 };
 export default function TextField({
   className,
@@ -24,7 +26,10 @@ export default function TextField({
   helper,
   touched = true,
   required = false,
+  loading = false,
 }: props) {
+  if (loading) return <TextFieldSkeleton />;
+
   return (
     <div className={cn("w-full", className)}>
       <label htmlFor={name} className="text-slate-500 text-sm ">
@@ -53,11 +58,24 @@ export default function TextField({
       <p
         className={cn(
           "py-2 text-xs text-red-500",
-          helper && touched ? "block" : "hidden"
+          typeof helper === "boolean"
+            ? "hidden"
+            : helper && touched
+            ? "block"
+            : "hidden"
         )}
       >
         {helper}
       </p>
+    </div>
+  );
+}
+
+function TextFieldSkeleton({ className }: { className?: string }) {
+  return (
+    <div className={cn("w-full", className)}>
+      <Skeleton className=" text-sm w-32 h-6"></Skeleton>
+      <Skeleton className="mt-1 h-11" />
     </div>
   );
 }

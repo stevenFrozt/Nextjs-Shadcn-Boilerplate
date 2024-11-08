@@ -1,23 +1,23 @@
 "use client";
-import { useFormik } from "formik";
-import Group from "../Base/Group";
-import { Checkbox } from "../ui/checkbox";
-import Link from "next/link";
-import { Button } from "../ui/button";
-import TextField from "../TextField";
+import { LOGIN_COOKIE_KEY } from "@/lib/constants";
 import { loginInitialValues, loginSchema } from "@/schema/loginSchema";
+import { deleteCookie, getCookie, setCookie } from "cookies-next";
+import { useFormik } from "formik";
 import { signIn } from "next-auth/react";
-import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { getCookie, setCookie, deleteCookie } from "cookies-next";
+import { useEffect, useState } from "react";
+import Group from "../Base/Group";
+import TextField from "../TextField";
+import { Button } from "../ui/button";
+import { Checkbox } from "../ui/checkbox";
 
 export default function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
   const [errorMessage, setErrorMessage] = useState("");
-
-  const loginCookieKey = "boilerplate-app-login";
+  const [loading, setLoading] = useState(true);
 
   const formik = useFormik({
     initialValues: loginInitialValues,
@@ -33,9 +33,9 @@ export default function LoginForm() {
     remember: boolean;
   }) {
     if (values.remember)
-      setCookie(loginCookieKey, JSON.stringify(formik.values));
+      setCookie(LOGIN_COOKIE_KEY, JSON.stringify(formik.values));
     else {
-      deleteCookie(loginCookieKey);
+      deleteCookie(LOGIN_COOKIE_KEY);
     }
     const response = await signIn("credentials", {
       email: values.email,
@@ -48,14 +48,14 @@ export default function LoginForm() {
   }
 
   useEffect(() => {
-    const credentialCookie = getCookie(loginCookieKey);
+    const credentialCookie = getCookie(LOGIN_COOKIE_KEY);
     if (credentialCookie) {
       const credentials = JSON.parse(String(credentialCookie));
       formik.setFieldValue("email", credentials.email);
       formik.setFieldValue("password", credentials.password);
       formik.setFieldValue("remember", credentials.remember);
     }
-    deleteCookie(loginCookieKey);
+    setLoading(false);
   }, []);
 
   return (
@@ -83,6 +83,7 @@ export default function LoginForm() {
               touched={formik.touched.email}
               className="w-full"
               required="none"
+              loading={loading}
             />
             <TextField
               label="Password"
@@ -97,6 +98,7 @@ export default function LoginForm() {
               helper={formik.errors.password || errorMessage}
               className="w-full"
               required="none"
+              loading={loading}
             />
             <Group
               className="text-sm w-full py-2"

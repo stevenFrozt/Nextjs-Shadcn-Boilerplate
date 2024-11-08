@@ -42,7 +42,13 @@ export const AVATAR_DROPDOWN_OPTIONS = [
     items: [
       { href: "", label: "Profile Settings", onClick: () => {} },
       { href: "", label: "My Bookings", onClick: () => {} },
-      { href: "", label: "Log Out", onClick: () => signOut() },
+      {
+        href: "",
+        label: "Log Out",
+        onClick: async () => {
+          await signOut({ callbackUrl: "/login" });
+        },
+      },
     ],
   },
 ];

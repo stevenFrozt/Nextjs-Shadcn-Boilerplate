@@ -14,11 +14,13 @@ import { useSession } from "next-auth/react";
 import { Skeleton } from "./ui/skeleton";
 import Link from "next/link";
 import { getAvatarInitials } from "@/helpers/getAvatarInitials";
+import { useRouter } from "next/navigation";
 
 type props = {
   className?: string;
 };
 export default function NavAvatar({ className }: props) {
+  const router = useRouter();
   const { data: session, status } = useSession();
 
   if (status === "unauthenticated") {

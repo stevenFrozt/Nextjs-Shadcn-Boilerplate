@@ -7,8 +7,9 @@ import { Button } from "../ui/button";
 import TextField from "../TextField";
 import { loginInitialValues, loginSchema } from "@/schema/loginSchema";
 import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { getCookie, setCookie, deleteCookie } from "cookies-next";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -16,13 +17,26 @@ export default function LoginForm() {
   const callbackUrl = searchParams.get("callbackUrl");
   const [errorMessage, setErrorMessage] = useState("");
 
+  const loginCookieKey = "boilerplate-app-login";
+
   const formik = useFormik({
     initialValues: loginInitialValues,
     validationSchema: loginSchema,
     onSubmit: SubmitHandler,
+    validateOnChange: false,
+    validateOnBlur: true,
   });
 
-  async function SubmitHandler(values: any) {
+  async function SubmitHandler(values: {
+    email: string;
+    password: string;
+    remember: boolean;
+  }) {
+    if (values.remember)
+      setCookie(loginCookieKey, JSON.stringify(formik.values));
+    else {
+      deleteCookie(loginCookieKey);
+    }
     const response = await signIn("credentials", {
       email: values.email,
       password: values.password,
@@ -32,6 +46,17 @@ export default function LoginForm() {
       ? setErrorMessage(JSON.parse(response.error).errors || "")
       : router.push(callbackUrl || "/");
   }
+
+  useEffect(() => {
+    const credentialCookie = getCookie(loginCookieKey);
+    if (credentialCookie) {
+      const credentials = JSON.parse(String(credentialCookie));
+      formik.setFieldValue("email", credentials.email);
+      formik.setFieldValue("password", credentials.password);
+      formik.setFieldValue("remember", credentials.remember);
+    }
+    deleteCookie(loginCookieKey);
+  }, []);
 
   return (
     <>
@@ -79,7 +104,13 @@ export default function LoginForm() {
               justify="between"
             >
               <Group align="center" gap="gap-2">
-                <Checkbox id="remember" className="h-4 w-4" />
+                <Checkbox
+                  id="remember"
+                  name="remember"
+                  className="h-4 w-4"
+                  onCheckedChange={(e) => formik.setFieldValue("remember", e)}
+                  checked={formik.values.remember}
+                />
                 <label htmlFor="remember" className="py-1 cursor-pointer">
                   Remember me
                 </label>

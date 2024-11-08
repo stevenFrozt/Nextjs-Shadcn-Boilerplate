@@ -3,6 +3,7 @@ import { object, string } from "yup";
 export const loginInitialValues = {
   email: "",
   password: "",
+  remember: false,
 };
 
 export const loginSchema = object({

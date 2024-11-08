@@ -55,7 +55,7 @@ export default function NavAvatar({ className }: props) {
                 <DropdownMenuItem
                   key={item.label}
                   className="cursor-pointer"
-                  onClick={item.onclick}
+                  onClick={item.onClick}
                 >
                   {item.label}
                 </DropdownMenuItem>

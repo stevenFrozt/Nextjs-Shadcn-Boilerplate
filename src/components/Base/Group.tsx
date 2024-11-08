@@ -9,6 +9,7 @@ type Props = {
   gap?: string; // Define gap size using Tailwind spacing (e.g., "gap-4")
   children?: React.ReactNode;
   wrap?: boolean;
+  onClick?: () => void;
 };
 
 export default function Group({
@@ -19,6 +20,7 @@ export default function Group({
   className,
   children,
   wrap,
+  onClick,
 }: Props) {
   // Map justify prop values to Tailwind CSS classes
   const justifyClass = (() => {
@@ -68,5 +70,9 @@ export default function Group({
     className
   );
 
-  return <div className={customClassNames.toString()}>{children}</div>;
+  return (
+    <div className={customClassNames.toString()} onClick={onClick}>
+      {children}
+    </div>
+  );
 }

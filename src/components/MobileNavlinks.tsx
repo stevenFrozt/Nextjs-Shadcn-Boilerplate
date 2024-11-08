@@ -24,7 +24,7 @@ export default function MobileNavlinks() {
           <DrawerTitle></DrawerTitle>
           <DrawerDescription></DrawerDescription>
           <Container>
-            <div className="py-4">
+            <div className="pt-4 pb-32">
               <Group vertical className="w-full">
                 {NAV_LINKS.map((link) => (
                   <Link

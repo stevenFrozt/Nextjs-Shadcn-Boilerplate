@@ -11,6 +11,7 @@ type props = {
   helper?: string | boolean;
   type?: "text" | "password" | "number" | "email";
   touched?: boolean;
+  required?: boolean | "none";
 };
 export default function TextField({
   className,
@@ -22,11 +23,20 @@ export default function TextField({
   type,
   helper,
   touched = true,
+  required = false,
 }: props) {
   return (
     <div className={cn("w-full", className)}>
       <label htmlFor={name} className="text-slate-500 text-sm ">
-        {label}
+        {label}{" "}
+        <span
+          className={cn(
+            required === true ? "text-red-500" : "text-gray-400 text-xs",
+            required === "none" ? "hidden" : ""
+          )}
+        >
+          {required ? "*" : " (Optional)"}
+        </span>
       </label>
       <Input
         id={name}

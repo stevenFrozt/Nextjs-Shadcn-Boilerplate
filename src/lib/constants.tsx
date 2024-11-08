@@ -1,6 +1,8 @@
+import { Avatar } from "@/components/ui/avatar";
 import { config } from "@/middleware";
 import { signOut } from "next-auth/react";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa6";
+import { PiCarFill, PiHouseFill, PiUserFill } from "react-icons/pi";
 
 // Add routes in the middleware.ts
 export const PROTECTED_ROUTES = [...config.matcher];
@@ -38,12 +40,26 @@ export const AVATAR_DROPDOWN_OPTIONS = [
   {
     group_label: "Account",
     items: [
-      { href: "", label: "Profile Settings", onclick: () => {} },
-      { href: "", label: "My Bookings", onclick: () => {} },
-      { href: "", label: "Log Out", onclick: () => signOut() },
+      { href: "", label: "Profile Settings", onClick: () => {} },
+      { href: "", label: "My Bookings", onClick: () => {} },
+      { href: "", label: "Log Out", onClick: () => signOut() },
     ],
   },
 ];
+
+export const MOBILE_NAV_LINKS = {
+  isEnabled: true,
+  links: [
+    { href: "/cars", label: "Cars", icon: <PiCarFill />, onClick: () => {} },
+    { href: "/", label: "Home", icon: <PiHouseFill />, onClick: () => {} },
+    {
+      href: "/profile",
+      label: "Profile",
+      icon: <PiUserFill />,
+      onClick: () => {},
+    },
+  ],
+};
 
 export const LOGO = {
   image_src: "",

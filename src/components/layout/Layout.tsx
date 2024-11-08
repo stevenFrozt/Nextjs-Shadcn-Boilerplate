@@ -7,6 +7,8 @@ import Container from "../Base/Container";
 import { usePathname } from "next/navigation";
 import { LAYOUT_CUSTOM } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { MobileIcon } from "@radix-ui/react-icons";
+import MobileNavBottom from "./MobileNavBottom";
 export default function Layout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
@@ -68,6 +70,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
       )}
       {flags?.footer && <Footer />}
+      <MobileNavBottom />
     </>
   );
 }

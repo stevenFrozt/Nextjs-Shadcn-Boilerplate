@@ -35,14 +35,14 @@ export default function LoginForm() {
 
   return (
     <>
-      <div className="w-4/5   mx-auto">
+      <div className="w-4/5 pt-6  mx-auto">
         <form onSubmit={formik.handleSubmit} className="w-full ">
           <Group
             vertical
             className="w-full"
             align="center"
             justify="center"
-            gap="gap-4"
+            gap="gap-6"
           >
             <TextField
               label="Email"
@@ -57,6 +57,7 @@ export default function LoginForm() {
               helper={formik.errors.email || Boolean(errorMessage)}
               touched={formik.touched.email}
               className="w-full"
+              required="none"
             />
             <TextField
               label="Password"
@@ -70,6 +71,7 @@ export default function LoginForm() {
               value={formik.values.password}
               helper={formik.errors.password || errorMessage}
               className="w-full"
+              required="none"
             />
             <Group
               className="text-sm w-full py-2"

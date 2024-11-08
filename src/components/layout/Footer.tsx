@@ -11,7 +11,7 @@ import { MdAccessTimeFilled } from "react-icons/md";
 
 export default function Footer() {
   return (
-    <div className="bg-primary pt-2 text-white">
+    <div className="bg-primary pt-2 text-white lg:pb-0 pb-24">
       <Container>
         {/* <div className="grid grid-cols-1 lg:grid-cols-4 gap-20 lg:gap-20 py-8 "> */}
         <Group
